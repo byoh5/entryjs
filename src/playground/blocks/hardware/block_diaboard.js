@@ -197,6 +197,7 @@ Entry.Diaboard = {
     COLOR_RANDOM: '8',
     EFFECT_RANDOM: 'r',
     DEFAULT_SLEEP: 50,  // 전체 블록 마다 SLEEP
+    EFFECT_DEFAULT_SLEEP: 300,  // 효과음 내기 블록 기본 슬립
 
     /**
      * 명령어 시퀀스는 엔트리 하드웨어앱으로 한번 메세지를 보내게 되면,
@@ -360,6 +361,7 @@ Entry.Diaboard.blockMenuBlocks = [
     'diaboard_led_one',
     'diaboard_led_one_time',
     'diaboard_led_hue',
+    'diaboard_led_color',
     'diaboard_led_rgb',
     'diaboard_led_turn_off_all',
     
@@ -1582,6 +1584,69 @@ Entry.Diaboard.getBlocks = function() {
             },
             syntax: { js: [], py: ['Diaboard.led_hue(%1,%2)'] },
         },
+        diaboard_led_color: {
+            color: EntryStatic.colorSet.block.default.HARDWARE,
+            outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
+            skeleton: 'basic',
+            statements: [],
+            params: [
+                {
+                    type: 'Dropdown',
+                    fontSize: 11,
+                    bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
+                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
+                    options: options_DIABOARD_led,
+                    value: 0,
+                },
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/hardware_icon.svg',
+                    size: 12,
+                },
+            ],
+            events: {},
+            def: {
+                params: [
+                    null,
+                    null
+                ],
+                type: 'diaboard_led_color',
+                id: 'i3je',
+            },
+            paramsKeyMap: {
+                LED: 0
+            },            
+            class: 'led',
+            isNotFor: ['diaboard'],
+            func: function(sprite, script) {
+                let led = script.getNumberValue('LED');
+                if( led == 7 ) {        // 7은 랜덤
+                    led     = Math.floor(Math.random() * 6) + 1;    // 1 ~ 6
+                }
+                // ============================================================
+                let sensorValue = Entry.hw.portData[ 'S4' ];            // sensorValue can be 0 ~ 7
+                let COLOR_MAP   = {
+                    0: "#000000",        // 'no_color'
+                    1: "#FF0000",        // 'red'
+                    2: "#FFFF00",        // 'yellow'
+                    3: "#008000",        // 'green'
+                    4: "#00FFFF",        // 'cyan'
+                    5: "#0000FF",        // 'blue'
+                    6: "#FF00FF",        // 'magenta'
+                    7: "#FFFFFF"         // 'white'
+                };
+        
+                let color   = COLOR_MAP[ sensorValue ];
+                let red     = parseInt(color.substr(1, 2), 16);
+                let green   = parseInt(color.substr(3, 2), 16);
+                let blue    = parseInt(color.substr(5, 2), 16);
+                let time    = 0;
+                let cmd     = `l:c:${led}:${red}:${green}:${blue}:${time}`; // l:c:0:255:255:255:1
+                Entry.Diaboard.fireCommand( cmd );
+                return Entry.Diaboard.deferredReturn( script.callReturn );
+            },
+            syntax: { js: [], py: ['Diaboard.led_color(%1)'] },
+        },        
         diaboard_led_rgb: {
             color: EntryStatic.colorSet.block.default.HARDWARE,
             outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -2263,7 +2328,7 @@ Entry.Diaboard.getBlocks = function() {
                         }
                         inc += 1;
                     }
-                    let totalSecond = inc * delay;  // delay 단위는 ms 
+                    let totalSecond = inc * delay + Entry.Diaboard.EFFECT_DEFAULT_SLEEP;  // delay 단위는 ms 
                     return Entry.Diaboard.deferredReturn( script.callReturn, totalSecond );
                 } else if( effectIndex == 1 ) {
                     // 2. 시무룩
@@ -2291,7 +2356,7 @@ Entry.Diaboard.getBlocks = function() {
                         }, delay * inc );       // every 20ms
                         inc += 1;
                     }
-                    let totalSecond = inc * delay;  // delay 단위는 ms 
+                    let totalSecond = inc * delay + Entry.Diaboard.EFFECT_DEFAULT_SLEEP;  // delay 단위는 ms 
                     return Entry.Diaboard.deferredReturn( script.callReturn, totalSecond );
                 } else if( effectIndex == 2 ) {
                     // 3. 슬픔
@@ -2319,7 +2384,7 @@ Entry.Diaboard.getBlocks = function() {
                         }, delay * inc );        // every 20ms
                         inc += 1;
                     }
-                    let totalSecond = inc * delay;  // delay 단위는 ms 
+                    let totalSecond = inc * delay + Entry.Diaboard.EFFECT_DEFAULT_SLEEP;  // delay 단위는 ms 
                     return Entry.Diaboard.deferredReturn( script.callReturn, totalSecond );
                 } else if( effectIndex == 3 ) {
                     // 4. 에너지 모으는
@@ -2344,7 +2409,7 @@ Entry.Diaboard.getBlocks = function() {
                         }
                         inc += 1;
                     }
-                    let totalSecond = inc * delay;  // delay 단위는 ms 
+                    let totalSecond = inc * delay + Entry.Diaboard.EFFECT_DEFAULT_SLEEP;  // delay 단위는 ms 
                     return Entry.Diaboard.deferredReturn( script.callReturn, totalSecond );
                 } else if( effectIndex == 4 ) {
                     // 5. 레이저빔
@@ -2364,7 +2429,7 @@ Entry.Diaboard.getBlocks = function() {
                         }
                         inc += 1;
                     }
-                    let totalSecond = inc * delay;  // delay 단위는 ms 
+                    let totalSecond = inc * delay + Entry.Diaboard.EFFECT_DEFAULT_SLEEP;  // delay 단위는 ms 
                     return Entry.Diaboard.deferredReturn( script.callReturn, totalSecond );
                 } else {
                     // invalid effectIndex
@@ -2924,6 +2989,7 @@ Entry.Diaboard.setLanguage = function() {
                 diaboard_led_one:				    '엘이디 %1 (을)를 %2 (으)로 켜기 %3',
                 diaboard_led_one_time:				'엘이디 %1 (을)를 %2 (으)로 %3 초 동안 켜기 %4',
                 diaboard_led_hue:				    '엘이디 %1 (을)를 색상(hue) %2 (으)로 켜기 %3',
+                diaboard_led_color:				    '엘이디 %1 (을)를 컬러센서 색상(7가지)로 켜기 %2',
                 diaboard_led_rgb:				    '엘이디 %1 (을)를 빨강 %2 녹색 %3 파랑 %4 (으)로 켜기 %5',
                 diaboard_led_turn_off_all:			'엘이디 %1 끄기 %2',
                 // 모터
@@ -2946,6 +3012,47 @@ Entry.Diaboard.setLanguage = function() {
                 diaboard_buzzer_speed_bpm_change:	'연주 속도를 %1 BPM만큼 바꾸기 %2',
                 diaboard_buzzer_sleep_rhythm:		'%1 박자 쉬기',
                 diaboard_buzzer_stop:				'버저음 멈추기',
+            },
+            Helper: {
+                diaboard_when_button_pressed:       "선택한 버튼을 누르거나 누르지 않으면 아래에 연결된 블록들을 실행합니다.",
+                diaboard_when_color_is:				"선택한 색상을 컬러센서가 감지하면 아래에 연결된 블록들을 실행합니다.",
+                diaboard_when_sensor_is:			"선택한 센서의 값과 오른쪽의 값을 비교하여 아래에 연결된 블록들을 실행합니다.\n< : 센서값이 오른쪽 값보다 작은 경우 '참'으로 판단합니다.\n> : 센서값이 오른쪽 값보다 큰 경우 '참'으로 판단합니다.\n= : 센서값이 오른쪽 값과 같은 경우 '참'으로 판단합니다.",
+                diaboard_button_pressed:			"선택한 버튼을 누르거나 누르지 않은 경우 '참'으로 판단합니다.",
+                diaboard_color_sensor_is:			"선택한 색상을 컬러센서가 감지한 경우 '참'으로 판단합니다.",
+                diaboard_sensor_condition:			"선택한 센서의 값과 오른쪽의 값을 비교합니다.\n< : 센서값이 오른쪽 값보다 작은 경우 '참'으로 판단합니다.\n> : 센서값이 오른쪽 값보다 큰 경우 '참'으로 판단합니다.\n= : 센서값이 오른쪽 값과 같은 경우 '참'으로 판단합니다.",
+                diaboard_color_sensor_seven_hue:	"컬러센서가 감지하는 색상을 7가지로 분류한 값입니다.\n7가지 색상 : 빨강, 노랑, 녹색, 청록, 파랑, 보라, 하양",
+                diaboard_color_sensor_one_hue:		"컬러센서가 감지한 색상값입니다.\n색상(hue) : 0 ~ 359 사이 범위로 설정할 수 있습니다.\n(총 360가지의 색상을 감지하며 360과 0은 같은 색으로 표현됩니다.)",
+                diaboard_sensor_value:				"선택한 센서가 감지한 값입니다. 값의 범위는 0 ~ 1023입니다. \n적외선 센서 : 물체에 반사된 적외선을 양을 측정하여 물체와의 거리를 감지합니다.\n밝기 센서 : 주변 환경이 얼마나 밝고 어두운지를 감지합니다.",
+                diaboard_convert_scale:				"선택한 센서가 감지한 값의 범위를 사용자가 임의로 바꿔서 사용합니다.\n적외선 센서 : 물체에 반사된 적외선을 양을 측정하여 물체와의 거리를 감지합니다.\n밝기 센서 : 주변 환경이 얼마나 밝고 어두운지를 감지합니다.",
+                diaboard_led_rainbow:				"엘이디를 무지개 효과로 켭니다.",
+                diaboard_led_rainbow_time:			"엘이디를 입력한 시간만큼 무지개 효과로 켭니다.\n시간 : 0 ~ 100 범위에서 0.1초 단위로 설정할 수 있습니다.",
+                diaboard_led_effect:				"엘이디를 선택한 효과와 선택한 색상으로 켭니다.",
+                diaboard_led_effect_time:			"엘이디를 입력한 시간만큼 선택한 효과와 선택한 색상으로 켭니다.\n시간 : 0 ~ 100 범위에서 0.1초 단위로 설정할 수 있습니다.",
+                diaboard_led_six:					"엘이디 1번 ~ 6번을 선택한 색상으로 각자 켭니다.",
+                diaboard_led_one:					"선택한 번호의 엘이디를 선택한 색상으로 켭니다.",
+                diaboard_led_one_time:				"선택한 번호의 엘이디를 입력한 시간만큼 선택한 색상으로 켭니다.\n시간 : 0 ~ 100 범위에서 0.1초 단위로 설정할 수 있습니다.",
+                diaboard_led_hue:					"선택한 번호의 엘이디를 색상(hue)값으로 켭니다.\n색상( hue) : 0 ~ 359 사이 범위로 설정할 수 있습니다.\n(총 360가지의 색상을 감지하며 360과 0은 같은 색으로 표현됩니다.)",
+                diaboard_led_color:					"선택한 번호의 엘이디를 현재 컬러센서가 감지한 색상(7가지)으로 켭니다. 컬러센서 색상이 \"없음\"일 때는 코드를 실행해도 엘이디를 켜지 않습니다.\n7가지 색상 : 빨강, 노랑, 녹색, 청록, 파랑, 보라, 하양",
+                diaboard_led_rgb:					"선택한 번호의 엘이디를 빨강, 녹색, 파랑값으로 켭니다.\n빨강, 녹색, 파랑 : 0 ~ 255의 범위로 설정할 수 있습니다.\n(0이하는 0으로, 255이상은 255로 처리됩니다. )",
+                diaboard_led_turn_off_all:			"선택한 번호의 엘이디를 끕니다.",
+                diaboard_servomotor_angle:			"선택한 포트의 서보모터의 각도를 입력한 값으로 정합니다.\n각도 : 0 ~ 180 사이 범위로 설정할 수 있습니다.\n(0이하는 0으로, 180이상은 180으로 처리됩니다.)",
+                diaboard_servomotor_angle_time:		"선택한 포트의 서보모터의 초기각도와 목표각도를 설정해 입력한 시간만큼 각도를 바꿉니다.\n각도 : 0 ~ 180 사이 범위로 설정할 수 있습니다.\n(0이하는 0으로, 180이상은 180으로 처리됩니다.)\n시간 : 0 ~ 100 범위에서 0.1초 단위로 설정할 수 있습니다.",
+                diaboard_dc_direction_speed:		"선택한 포트의 디씨모터의 방향과 속력을 정합니다.\n방향 : 시계방향과 반시계 방향을 설정할 수 있습니다.\n속력 : 0 ~ 100까지 범위로 설정할 수 있습니다.\n(0이하는 0으로, 100이상은 100으로 처리됩니다.)",
+                diaboard_dc_direction_speed_time:	"선택한 포트의 디씨모터의 방향과 속력을 정하고, 입력한 시간만큼 동작합니다.\n방향 : 시계방향과 반시계 방향을 설정할 수 있습니다.\n속력 : 0 ~ 100까지 범위로 설정할 수 있습니다.\n(0이하는 0으로, 100이상은 100으로 처리됩니다.)\n시간 : 0 ~ 100 범위에서 0.1초 단위로 설정할 수 있습니다.",
+                diaboard_dc_speed:					"선택한 포트의 디씨모터의 속도를 정합니다.\n속도 : -100 ~ 100 사이의 범위로 설정할 수 있습니다.\n(-100이하는 -100으로, 100이상은 100으로 처리됩니다.)",
+                diaboard_dc_speed_time:				"선택한 포트의 디씨모터의 속도를 정하고, 입력한 시간만큼 동작합니다.\n속도 : -100 ~ 100 사이의 범위로 설정할 수 있습니다.\n(-100이하는 -100으로, 100이상은 100으로 처리됩니다.)\n시간 : 0 ~ 100 범위에서 0.1초 단위로 설정할 수 있습니다.",
+                diaboard_turn_off_all_motors:		"선택한 포트의 모터를 멈춥니다.",
+                diaboard_buzzer_melody_type:        "선택한 멜로디를 연주합니다.",
+                diaboard_buzzer_effect_type:        "선택한 효과음을 냅니다.",
+                diaboard_buzzer_eight_melody_bpm:	"선택한 음들을 입력한 BPM으로 연주합니다.\n연주속도(BPM) : 30 ~ 300 사이의 범위로 설정할 수 있습니다.\n(30이하는 30으로, 300이상은 300으로 처리됩니다.)",
+                diaboard_buzzer_octave:             "선택한 옥타브와 음으로 연주합니다.",
+                diaboard_buzzer_octave_rhythm:      "선택한 옥타브와 음을 입력한 박자로 연주합니다.",
+                diaboard_buzzer_hz:                 "입력한 주파수로 연주합니다.\n주파수 : 33 ~ 7,900 사이의 범위로 설정할 수 있습니다.\n(33이하는 33으로 7,900이상은 7,900으로 처리됩니다.)",
+                diaboard_buzzer_hz_change:          "입력한 주파수만큼 바꿔서 연주합니다.",
+                diaboard_buzzer_speed_bpm:          "입력한 BPM으로 연주 속도를 정합니다.\n연주속도(BPM) : 30 ~ 300 사이의 범위로 설정할 수 있습니다.\n(30이하는 30으로, 300이상은 300으로 처리됩니다.)",
+                diaboard_buzzer_speed_bpm_change:   "입력한 BPM만큼 연주 속도를 바꿉니다.",
+                diaboard_buzzer_sleep_rhythm:       "선택한 박자만큼 쉽니다.",
+                diaboard_buzzer_stop:				"버저음을 멈춥니다."
             },
             Blocks: {
                 DIABOARD_button_left:   '왼쪽',
@@ -3036,6 +3143,7 @@ Entry.Diaboard.setLanguage = function() {
                 diaboard_led_one:				    'turn on %1 to %2 %3',
                 diaboard_led_one_time:				'turn on %1 to %2 for %3 seconds %4',
                 diaboard_led_hue:				    'turn on %1 to %2 %3',
+                diaboard_led_color:				    'turn on %1 to seven colors %2',
                 diaboard_led_rgb:				    'turn on %1 to red %2 green %3 blue %4 %5',
                 diaboard_led_turn_off_all:			'turn off %1 %2',
                 // 모터
@@ -3058,6 +3166,47 @@ Entry.Diaboard.setLanguage = function() {
                 diaboard_buzzer_speed_bpm_change:	'change tempo by %1 bpm %2',
                 diaboard_buzzer_sleep_rhythm:		'rest sound for %1 beat',
                 diaboard_buzzer_stop:				'stop all sound',
+            },
+            Helper: {
+                diaboard_when_button_pressed:       "",
+                diaboard_when_color_is:				"",
+                diaboard_when_sensor_is:			"",
+                diaboard_button_pressed:			"",
+                diaboard_color_sensor_is:			"",
+                diaboard_sensor_condition:			"",
+                diaboard_color_sensor_seven_hue:	"",
+                diaboard_color_sensor_one_hue:		"",
+                diaboard_sensor_value:				"",
+                diaboard_convert_scale:				"",
+                diaboard_led_rainbow:				"",
+                diaboard_led_rainbow_time:			"",
+                diaboard_led_effect:				"",
+                diaboard_led_effect_time:			"",
+                diaboard_led_six:					"",
+                diaboard_led_one:					"",
+                diaboard_led_one_time:				"",
+                diaboard_led_hue:					"",
+                diaboard_led_color:					"",
+                diaboard_led_rgb:					"",
+                diaboard_led_turn_off_all:			"",
+                diaboard_servomotor_angle:			"",
+                diaboard_servomotor_angle_time:		"",
+                diaboard_dc_direction_speed:		"",
+                diaboard_dc_direction_speed_time:	"",
+                diaboard_dc_speed:					"",
+                diaboard_dc_speed_time:				"",
+                diaboard_turn_off_all_motors:		"",
+                diaboard_buzzer_melody_type:        "",
+                diaboard_buzzer_effect_type:        "",
+                diaboard_buzzer_eight_melody_bpm:	"",
+                diaboard_buzzer_octave:             "",
+                diaboard_buzzer_octave_rhythm:      "",
+                diaboard_buzzer_hz:                 "",
+                diaboard_buzzer_hz_change:          "",
+                diaboard_buzzer_speed_bpm:          "",
+                diaboard_buzzer_speed_bpm_change:   "",
+                diaboard_buzzer_sleep_rhythm:       "",
+                diaboard_buzzer_stop:				""
             },
             Blocks: {
                 DIABOARD_button_left:   'left',

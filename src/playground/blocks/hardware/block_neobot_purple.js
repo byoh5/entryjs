@@ -4,7 +4,7 @@ Entry.NeobotPurple = {
     id: '5.5',
     name: 'neobot_purple',
     url: 'http://www.neobot.co.kr',
-    imageName: 'neobot.png',
+    imageName: 'neobot_purple.png',
     title: {
         ko: 'NEW 네오봇 Purple',
         en: 'NEW NEOBOT Purple',
@@ -18,7 +18,7 @@ Entry.NeobotPurple = {
         Entry.hw.update();
     },
     monitorTemplate: {
-        imgPath: 'hw/neobot.png',
+        imgPath: 'hw/neobot_purple.png',
         width: 700,
         height: 700,
         listPorts: {
@@ -28,14 +28,14 @@ Entry.NeobotPurple = {
             FND: { name: 'FND', type: 'output', pos: { x: 0, y: 0 } },
         },
         ports: {
-            IN1: { name: 'IN1', type: 'input', pos: { x: 270, y: 200 } },
-            IN2: { name: 'IN2', type: 'input', pos: { x: 325, y: 200 } },
-            IN3: { name: 'IN3', type: 'input', pos: { x: 325, y: 500 } },
-            DCL: { name: 'L-Motor', type: 'output', pos: { x: 270, y: 500 } },
-            DCR: { name: 'R-Motor', type: 'output', pos: { x: 435, y: 500 } },
-            OUT1: { name: 'OUT1', type: 'output', pos: { x: 380, y: 200 } },
-            OUT2: { name: 'OUT2', type: 'output', pos: { x: 435, y: 200 } },
-            OUT3: { name: 'OUT3', type: 'output', pos: { x: 380, y: 500 } },
+            IN1: { name: 'IN1', type: 'input', pos: { x: 270, y: 170 } },
+            IN2: { name: 'IN2', type: 'input', pos: { x: 325, y: 170 } },
+            IN3: { name: 'IN3', type: 'input', pos: { x: 325, y: 530 } },
+            DCL: { name: 'L-Motor', type: 'output', pos: { x: 270, y: 530 } },
+            DCR: { name: 'R-Motor', type: 'output', pos: { x: 435, y: 530 } },
+            OUT1: { name: 'OUT1', type: 'output', pos: { x: 380, y: 170 } },
+            OUT2: { name: 'OUT2', type: 'output', pos: { x: 435, y: 170 } },
+            OUT3: { name: 'OUT3', type: 'output', pos: { x: 380, y: 530 } },
         },
         mode: 'both',
     },
@@ -47,28 +47,28 @@ Entry.NeobotPurple.setLanguage = function() {
         ko: {
             template: {
                 // sensor
+                neobot_purple_sensor_title: '센서',
                 neobot_purple_sensor_value: '%1',
-                neobot_purple_sensor_convert_scale: '변환된 %1 값   범위: %2 ~ %3 변환: %4 ~ %5',
-
-                // decision
+                neobot_purple_sensor_convert_scale: '%1 %2 ~ %3 를 %4 ~ %5 으로 변환',
                 neobot_purple_decision_sensor_is_over: '%1 %2 %3',
                 neobot_purple_decision_equal_with_sensor: '%1 컬러가 %2',
                 neobot_purple_decision_sensor_angle: '%1 각도 %2 %3',
-
-                // remote
                 neobot_purple_remote_button: '리모컨 버튼 %1 을 누름',
 
                 // LED
+                neobot_purple_led_title: 'LED',
                 neobot_purple_arg_led_duration: '%1',
                 neobot_purple_led_on: 'LED 켜기   %1 %2 %3 %4',
                 neobot_purple_output_led_off: '%1 LED 끄기 %2',
-                neobot_purple_led_brightness_with_sensor: '%1 센서로 %2 LED 밝기 조절하기 %3',
+                neobot_purple_led_brightness_with_sensor: '%1 로 %2 LED 제어 %3',
                 neobot_purple_color_led_on: '%1 컬러LED 켜기   R %2 G %3 B %4 %5',
 
                 // output
+                neobot_purple_output_title: '출력',
                 neobot_purple_set_output: '%1 에 %2 값 출력하기 %3',
 
                 // motor
+                neobot_purple_motor_title: '회전모터',
                 neobot_purple_robot: '로봇 %1 %2',
                 neobot_purple_motor_start: '모터 회전하기   %1 %2 %3 %4 %5',
                 neobot_purple_motor_stop: '%1 모터 멈추기 %2',
@@ -76,11 +76,13 @@ Entry.NeobotPurple.setLanguage = function() {
                 neobot_purple_arg_motor_duration: '%1',
 
                 // melody
+                neobot_purple_buzzer_title: '버저',
                 neobot_purple_play_note_for: '버저 울리기   옥타브: %2 음: %1 길이: %3 %4',
                 neobot_purple_melody_play_with_sensor: '%1 센서로 버저 울리기 %2',
                 neobot_purple_melody_stop: '버저 멈추기 %1',
 
                 // servo
+                neobot_purple_servo_title: '서보모터',
                 get_servo_degree: '%1',
                 neobot_purple_servo_init: '%1 서보모터 리셋 %2',
                 neobot_purple_servo_rotate: '서보모터 회전하기   %1 %2 %3 %4',
@@ -220,28 +222,30 @@ Entry.NeobotPurple.setLanguage = function() {
             // en.js에 작성하던 내용
             template: {
                 // sensor
+                neobot_purple_sensor_title: 'Sensor',
                 neobot_purple_sensor_value: '%1',
-                neobot_purple_sensor_convert_scale: '%1 \'s changed value   range: %2 ~ %3 conversion: %4 ~ %5',
-
-                // decision
+                neobot_purple_sensor_convert_scale:
+                    "%1 's changed value   range: %2 ~ %3 conversion: %4 ~ %5",
                 neobot_purple_decision_sensor_is_over: '%1 %2 %3',
-                neobot_purple_decision_equal_with_sensor: '%1 \'s color is %2',
+                neobot_purple_decision_equal_with_sensor: "%1 's color is %2",
                 neobot_purple_decision_sensor_angle: '%1 angle %2 %3',
-
-                // remote
                 neobot_purple_remote_button: 'pressing button %1 of remote controller',
 
                 // LED
+                neobot_purple_led_title: 'LED',
                 neobot_purple_arg_led_duration: '%1',
                 neobot_purple_led_on: 'Turn on the LED    %1 %2 %3 %4',
                 neobot_purple_output_led_off: 'Turn off the %1 LED %2',
-                neobot_purple_led_brightness_with_sensor: 'Control %2 LED\'s brightness with %1 sensor %3',
+                neobot_purple_led_brightness_with_sensor:
+                    "Control %2 LED's brightness with %1 sensor %3",
                 neobot_purple_color_led_on: 'Turn on the %1 color LED   R %2 G %3 B %4 %5',
 
                 // output
+                neobot_purple_output_title: 'Set output',
                 neobot_purple_set_output: 'Output %2 value to %1 port %3',
 
                 // motor
+                neobot_purple_motor_title: 'Motor',
                 neobot_purple_robot: 'Robot %1 %2',
                 neobot_purple_motor_start: 'Motor operation   %1 %2 %3 %4 %5',
                 neobot_purple_motor_stop: 'Stop the %1 motor(s) %2',
@@ -249,11 +253,13 @@ Entry.NeobotPurple.setLanguage = function() {
                 neobot_purple_arg_motor_duration: '%1',
 
                 // melody
+                neobot_purple_buzzer_title: 'Buzzer',
                 neobot_purple_play_note_for: 'Buzzer   octave: %1 scale: %2 note: %3 %4',
                 neobot_purple_melody_play_with_sensor: 'Buzzer rings by %1 sensor value %2',
                 neobot_purple_melody_stop: 'Stop the buzzer %1',
 
                 // servo
+                neobot_purple_servo_title: 'Servo motor',
                 neobot_purple_servo_init: 'Reset the %1 servo motor %2',
                 neobot_purple_servo_rotate: 'Rotate the servo motor   %1 %2 %3 %4',
                 neobot_purple_servo_stop: 'Stop the %1 servo motor %2',
@@ -393,41 +399,43 @@ Entry.NeobotPurple.setLanguage = function() {
 
 Entry.NeobotPurple.blockMenuBlocks = [
     // sensor
+    'neobot_purple_sensor_title',
     'neobot_purple_sensor_value',
     'neobot_purple_sensor_convert_scale',
-
-    // decision
     'neobot_purple_decision_sensor_is_over',
     'neobot_purple_decision_equal_with_sensor',
     'neobot_purple_decision_sensor_angle',
-
-    // remote
     'neobot_purple_remote_button',
 
     // led
+    'neobot_purple_led_title',
     'neobot_purple_led_on',
     'neobot_purple_led_brightness_with_sensor',
     'neobot_purple_color_led_on',
     'neobot_purple_output_led_off',
 
     // output
+    'neobot_purple_output_title',
     'neobot_purple_set_output',
 
     //  motor
+    'neobot_purple_motor_title',
     'neobot_purple_robot',
     'neobot_purple_motor_start',
     'neobot_purple_motor_stop',
 
-    // melody
-    'neobot_purple_play_note_for',
-    'neobot_purple_melody_play_with_sensor',
-    'neobot_purple_melody_stop',
-
     // servo
+    'neobot_purple_servo_title',
     'neobot_purple_servo_init',
     'neobot_purple_servo_rotate',
     'neobot_purple_servo_stop',
     'neobot_purple_servo_change_degree',
+
+    // melody
+    'neobot_purple_buzzer_title',
+    'neobot_purple_play_note_for',
+    'neobot_purple_melody_play_with_sensor',
+    'neobot_purple_melody_stop',
 ];
 
 Entry.NeobotPurple.getBlocks = function() {
@@ -435,6 +443,30 @@ Entry.NeobotPurple.getBlocks = function() {
         /*************************
          * class neobot_purple_sensor
          *************************/
+        neobot_purple_sensor_title: {
+            color: EntryStatic.colorSet.common.TRANSPARENT,
+            fontColor: '#191970',
+            skeleton: 'basic_text',
+            skeletonOptions: {
+                contentPos: {
+                    x: 5,
+                },
+            },
+            params: [
+                {
+                    type: 'Text',
+                    text: Lang.template.neobot_purple_sensor_title,
+                    color: '#191970',
+                    align: 'left',
+                },
+            ],
+            def: {
+                type: 'neobot_purple_sensor_title',
+            },
+            class: 'neobot_purple_sensor',
+            isNotFor: ['neobot_purple'],
+            events: {},
+        },
         neobot_purple_sensor_value: {
             color: EntryStatic.colorSet.block.default.HARDWARE,
             outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -571,9 +603,6 @@ Entry.NeobotPurple.getBlocks = function() {
             },
         },
 
-        /*************************
-         * class neobot_purple_decision
-         *************************/
         neobot_purple_decision_sensor_is_over: {
             color: EntryStatic.colorSet.block.default.HARDWARE,
             outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -623,7 +652,7 @@ Entry.NeobotPurple.getBlocks = function() {
                 SYMBOL: 1,
                 VALUE: 2,
             },
-            class: 'neobot_purple_decision',
+            class: 'neobot_purple_sensor',
             isNotFor: ['neobot_purple'],
             func: function(sprite, script) {
                 const sensorTemp = script.getStringField('SENSOR');
@@ -710,7 +739,7 @@ Entry.NeobotPurple.getBlocks = function() {
                 SENSOR: 0,
                 COLOR: 1,
             },
-            class: 'neobot_purple_decision',
+            class: 'neobot_purple_sensor',
             isNotFor: ['neobot_purple'],
             func: function(sprite, script) {
                 var sensorTemp = script.getStringField('SENSOR');
@@ -809,7 +838,7 @@ Entry.NeobotPurple.getBlocks = function() {
                 SYMBOL: 1,
                 VALUE: 2,
             },
-            class: 'neobot_purple_decision',
+            class: 'neobot_purple_sensor',
             isNotFor: ['neobot_purple'],
             func: function(sprite, script) {
                 var sensorTemp = script.getStringField('SENSOR');
@@ -837,9 +866,6 @@ Entry.NeobotPurple.getBlocks = function() {
             },
         },
 
-        /*************************
-         * class neobot_purple_remote
-         *************************/
         neobot_purple_remote_button: {
             color: EntryStatic.colorSet.block.default.HARDWARE,
             outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -873,7 +899,7 @@ Entry.NeobotPurple.getBlocks = function() {
             paramsKeyMap: {
                 KEY: 0,
             },
-            class: 'neobot_purple_remote',
+            class: 'neobot_purple_sensor',
             isNotFor: ['neobot_purple'],
             func: function(sprite, script) {
                 var key = script.getNumberField('KEY');
@@ -889,6 +915,30 @@ Entry.NeobotPurple.getBlocks = function() {
         /*************************
          * class neobot_purple_led
          *************************/
+        neobot_purple_led_title: {
+            color: EntryStatic.colorSet.common.TRANSPARENT,
+            fontColor: '#191970',
+            skeleton: 'basic_text',
+            skeletonOptions: {
+                contentPos: {
+                    x: 5,
+                },
+            },
+            params: [
+                {
+                    type: 'Text',
+                    text: Lang.template.neobot_purple_led_title,
+                    color: '#191970',
+                    align: 'left',
+                },
+            ],
+            def: {
+                type: 'neobot_purple_led_title',
+            },
+            class: 'neobot_purple_led',
+            isNotFor: ['neobot_purple'],
+            events: {},
+        },
         neobot_purple_led_on: {
             color: EntryStatic.colorSet.block.default.HARDWARE,
             outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -972,7 +1022,11 @@ Entry.NeobotPurple.getBlocks = function() {
                         Entry.console.print('==========================', 'speak');
                     }
 
-                    if ((duration != '계속' && duration != 'constantly') && Entry.parseNumber(duration) <= 0) {
+                    if (
+                        duration != '계속' &&
+                        duration != 'constantly' &&
+                        Entry.parseNumber(duration) <= 0
+                    ) {
                         return script.callReturn();
                     }
 
@@ -999,7 +1053,8 @@ Entry.NeobotPurple.getBlocks = function() {
                         } else {
                             Entry.hw.sendQueue[port] = 0;
                         }
-                        if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_led_on : 0', 'speak');
+                        if (Entry.NeobotPurple.log_to_console)
+                            Entry.console.print('neobot_purple_led_on : 0', 'speak');
                         script.timeFlag = 0;
                     }, durationValue * 1000);
                     return script;
@@ -1120,13 +1175,22 @@ Entry.NeobotPurple.getBlocks = function() {
             func: function(sprite, script) {
                 const inPort = script.getStringField('IN', script);
                 const outPort = script.getStringField('OUT', script);
-                const value = Entry.hw.portData[inPort];
+                let value = Entry.hw.portData[inPort];
+
+                // edited 210421, IN 값 0~100 을 0~255로 변경, 센서 100 이상은 최대값으로 처리함.
+                value = Math.max(value, 0);
+                value = Math.min(value, 100);
+                value = Math.ceil((value / 100) * 255);
 
                 if (Entry.NeobotPurple.log_to_console) {
-                    Entry.console.print('=== neobot_purple_led_brightness_with_sensor ===', 'speak');
+                    Entry.console.print(
+                        '=== neobot_purple_led_brightness_with_sensor ===',
+                        'speak'
+                    );
                     Entry.console.print('out port : ' + outPort, 'speak');
                     Entry.console.print('in port : ' + inPort, 'speak');
-                    Entry.console.print('sensor value : ' + value, 'speak');
+                    Entry.console.print('sensor value : ' + Entry.hw.portData[inPort], 'speak');
+                    Entry.console.print('output value : ' + value, 'speak');
                     Entry.console.print('==========================', 'speak');
                 }
 
@@ -1253,38 +1317,67 @@ Entry.NeobotPurple.getBlocks = function() {
                     if (out1) Entry.hw.sendQueue['OUT1'] = valRed;
                     if (out2) Entry.hw.sendQueue['OUT2'] = valRed;
                     if (out3) Entry.hw.sendQueue['OUT3'] = valRed;
-                    if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_color_led_on : ' + valRed, 'speak');
-                    setTimeout(function() { // set red
+                    if (Entry.NeobotPurple.log_to_console)
+                        Entry.console.print('neobot_purple_color_led_on : ' + valRed, 'speak');
+                    setTimeout(function() {
+                        // set red
                         if (out1) Entry.hw.sendQueue['OUT1'] = red;
                         if (out2) Entry.hw.sendQueue['OUT2'] = red;
                         if (out3) Entry.hw.sendQueue['OUT3'] = red;
-                        if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_color_led_on : ' + red, 'speak');
-                        setTimeout(function() { // choose green
+                        if (Entry.NeobotPurple.log_to_console)
+                            Entry.console.print('neobot_purple_color_led_on : ' + red, 'speak');
+                        setTimeout(function() {
+                            // choose green
                             if (out1) Entry.hw.sendQueue['OUT1'] = valGreen;
                             if (out2) Entry.hw.sendQueue['OUT2'] = valGreen;
                             if (out3) Entry.hw.sendQueue['OUT3'] = valGreen;
-                            if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_color_led_on : ' + valGreen, 'speak');
-                            setTimeout(function() { // set green
+                            if (Entry.NeobotPurple.log_to_console)
+                                Entry.console.print(
+                                    'neobot_purple_color_led_on : ' + valGreen,
+                                    'speak'
+                                );
+                            setTimeout(function() {
+                                // set green
                                 if (out1) Entry.hw.sendQueue['OUT1'] = green;
                                 if (out2) Entry.hw.sendQueue['OUT2'] = green;
                                 if (out3) Entry.hw.sendQueue['OUT3'] = green;
-                                if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_color_led_on : ' + green, 'speak');
-                                setTimeout(function() { // choose blue
+                                if (Entry.NeobotPurple.log_to_console)
+                                    Entry.console.print(
+                                        'neobot_purple_color_led_on : ' + green,
+                                        'speak'
+                                    );
+                                setTimeout(function() {
+                                    // choose blue
                                     if (out1) Entry.hw.sendQueue['OUT1'] = valBlue;
                                     if (out2) Entry.hw.sendQueue['OUT2'] = valBlue;
                                     if (out3) Entry.hw.sendQueue['OUT3'] = valBlue;
-                                    if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_color_led_on : ' + valBlue, 'speak');
-                                    setTimeout(function() { // set blue
+                                    if (Entry.NeobotPurple.log_to_console)
+                                        Entry.console.print(
+                                            'neobot_purple_color_led_on : ' + valBlue,
+                                            'speak'
+                                        );
+                                    setTimeout(function() {
+                                        // set blue
                                         if (out1) Entry.hw.sendQueue['OUT1'] = blue;
                                         if (out2) Entry.hw.sendQueue['OUT2'] = blue;
                                         if (out3) Entry.hw.sendQueue['OUT3'] = blue;
-                                        if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_color_led_on : ' + blue, 'speak');
-                                        setTimeout(function() { // accept
+                                        if (Entry.NeobotPurple.log_to_console)
+                                            Entry.console.print(
+                                                'neobot_purple_color_led_on : ' + blue,
+                                                'speak'
+                                            );
+                                        setTimeout(function() {
+                                            // accept
                                             if (out1) Entry.hw.sendQueue['OUT1'] = valAccept;
                                             if (out2) Entry.hw.sendQueue['OUT2'] = valAccept;
                                             if (out3) Entry.hw.sendQueue['OUT3'] = valAccept;
-                                            if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_color_led_on : ' + valAccept, 'speak');
-                                            setTimeout(function() { // final delay
+                                            if (Entry.NeobotPurple.log_to_console)
+                                                Entry.console.print(
+                                                    'neobot_purple_color_led_on : ' + valAccept,
+                                                    'speak'
+                                                );
+                                            setTimeout(function() {
+                                                // final delay
                                                 script.timeFlag = 0;
                                             }, 200);
                                         }, 200);
@@ -1308,6 +1401,30 @@ Entry.NeobotPurple.getBlocks = function() {
         /*************************
          * class neobot_purple_output
          *************************/
+        neobot_purple_output_title: {
+            color: EntryStatic.colorSet.common.TRANSPARENT,
+            fontColor: '#191970',
+            skeleton: 'basic_text',
+            skeletonOptions: {
+                contentPos: {
+                    x: 5,
+                },
+            },
+            params: [
+                {
+                    type: 'Text',
+                    text: Lang.template.neobot_purple_output_title,
+                    color: '#191970',
+                    align: 'left',
+                },
+            ],
+            def: {
+                type: 'neobot_purple_output_title',
+            },
+            class: 'neobot_purple_output',
+            isNotFor: ['neobot_purple'],
+            events: {},
+        },
         neobot_purple_set_output: {
             color: EntryStatic.colorSet.block.default.HARDWARE,
             outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -1385,6 +1502,30 @@ Entry.NeobotPurple.getBlocks = function() {
         /*************************
          * class neobot_purple_motor
          *************************/
+        neobot_purple_motor_title: {
+            color: EntryStatic.colorSet.common.TRANSPARENT,
+            fontColor: '#191970',
+            skeleton: 'basic_text',
+            skeletonOptions: {
+                contentPos: {
+                    x: 5,
+                },
+            },
+            params: [
+                {
+                    type: 'Text',
+                    text: Lang.template.neobot_purple_motor_title,
+                    color: '#191970',
+                    align: 'left',
+                },
+            ],
+            def: {
+                type: 'neobot_purple_motor_title',
+            },
+            class: 'neobot_purple_motor',
+            isNotFor: ['neobot_purple'],
+            events: {},
+        },
         neobot_purple_robot: {
             color: EntryStatic.colorSet.block.default.HARDWARE,
             outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -1413,10 +1554,7 @@ Entry.NeobotPurple.getBlocks = function() {
             ],
             events: {},
             def: {
-                params: [
-                    null,
-                    null,
-                ],
+                params: [null, null],
                 type: 'neobot_purple_robot',
             },
             paramsKeyMap: {
@@ -1544,7 +1682,11 @@ Entry.NeobotPurple.getBlocks = function() {
                     const speed = script.getStringValue('SPEED', script);
                     const duration = script.getStringValue('DURATION', script);
 
-                    if (duration != '계속' && duration != 'constantly' && Entry.parseNumber(duration) <= 0) {
+                    if (
+                        duration != '계속' &&
+                        duration != 'constantly' &&
+                        Entry.parseNumber(duration) <= 0
+                    ) {
                         return script.callReturn();
                     }
 
@@ -1575,23 +1717,16 @@ Entry.NeobotPurple.getBlocks = function() {
                         rightDirectionValue = 0x20;
                     }
 
+                    // edited 210421, 0~100 을 0~15로 변환, 100 이상은 최대값(15)으로 처리함.
                     let speedValue = 0;
-                    let maxSpeed;
                     if (Entry.Utils.isNumber(speed)) {
-                        maxSpeed = 100;
                         speedValue = Entry.parseNumber(speed);
                     } else {
-                        if (speed.indexOf('p') == 0) { // percent
-                            maxSpeed = 100;
-                            speedValue = Entry.parseNumber(speed.substring(1));
-                        } else { // IN
-                            maxSpeed = 255;
-                            speedValue = Entry.hw.portData[speed];
-                        }
+                        speedValue = Entry.hw.portData[speed];
                     }
                     speedValue = Math.max(speedValue, 0);
-                    speedValue = Math.min(speedValue, maxSpeed);
-                    speedValue = Math.round(speedValue / maxSpeed * 15);
+                    speedValue = Math.min(speedValue, 100);
+                    speedValue = Math.ceil((speedValue / 100) * 15);
 
                     const leftOutValue = leftDirectionValue + speedValue;
                     const rightOutValue = rightDirectionValue + speedValue;
@@ -1602,8 +1737,14 @@ Entry.NeobotPurple.getBlocks = function() {
                         Entry.console.print('direction : ' + direction, 'speak');
                         Entry.console.print('speed : ' + speed, 'speak');
                         Entry.console.print('duration : ' + duration, 'speak');
-                        Entry.console.print('left direction value : ' + leftDirectionValue, 'speak');
-                        Entry.console.print('right direction value : ' + rightDirectionValue, 'speak');
+                        Entry.console.print(
+                            'left direction value : ' + leftDirectionValue,
+                            'speak'
+                        );
+                        Entry.console.print(
+                            'right direction value : ' + rightDirectionValue,
+                            'speak'
+                        );
                         Entry.console.print('speed value : ' + speedValue, 'speak');
                         Entry.console.print('left output value : ' + leftOutValue, 'speak');
                         Entry.console.print('right output value : ' + rightOutValue, 'speak');
@@ -1627,7 +1768,8 @@ Entry.NeobotPurple.getBlocks = function() {
                     setTimeout(function() {
                         Entry.hw.sendQueue['DCL'] = 0;
                         Entry.hw.sendQueue['DCR'] = 0;
-                        if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_motor_start : 0', 'speak');
+                        if (Entry.NeobotPurple.log_to_console)
+                            Entry.console.print('neobot_purple_motor_start : 0', 'speak');
                         script.timeFlag = 0;
                     }, durationValue * 1000);
                     return script;
@@ -1668,9 +1810,7 @@ Entry.NeobotPurple.getBlocks = function() {
             ],
             events: {},
             def: {
-                params: [
-                    null, null,
-                ],
+                params: [null, null],
                 type: 'neobot_purple_motor_stop',
             },
             paramsKeyMap: {
@@ -1702,6 +1842,30 @@ Entry.NeobotPurple.getBlocks = function() {
         /*************************
          * class neobot_purple_melody
          *************************/
+        neobot_purple_buzzer_title: {
+            color: EntryStatic.colorSet.common.TRANSPARENT,
+            fontColor: '#191970',
+            skeleton: 'basic_text',
+            skeletonOptions: {
+                contentPos: {
+                    x: 5,
+                },
+            },
+            params: [
+                {
+                    type: 'Text',
+                    text: Lang.template.neobot_purple_buzzer_title,
+                    color: '#191970',
+                    align: 'left',
+                },
+            ],
+            def: {
+                type: 'neobot_purple_buzzer_title',
+            },
+            class: 'neobot_purple_melody',
+            isNotFor: ['neobot_purple'],
+            events: {},
+        },
         neobot_purple_play_note_for: {
             color: EntryStatic.colorSet.block.default.HARDWARE,
             outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -1800,9 +1964,10 @@ Entry.NeobotPurple.getBlocks = function() {
                     Entry.hw.sendQueue['SND'] = value;
                     setTimeout(function() {
                         Entry.hw.sendQueue['SND'] = 0;
-                        if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_play_note_for : 0', 'speak');
+                        if (Entry.NeobotPurple.log_to_console)
+                            Entry.console.print('neobot_purple_play_note_for : 0', 'speak');
                         script.timeFlag = 0;
-                    }, 1 / duration * 2000);
+                    }, (1 / duration) * 2000);
                     return script;
                 } else if (script.timeFlag == 1) {
                     return script;
@@ -1841,9 +2006,7 @@ Entry.NeobotPurple.getBlocks = function() {
             ],
             events: {},
             def: {
-                params: [
-                    null, null,
-                ],
+                params: [null, null],
                 type: 'neobot_purple_melody_play_with_sensor',
             },
             paramsKeyMap: {
@@ -1854,9 +2017,11 @@ Entry.NeobotPurple.getBlocks = function() {
             func: function(sprite, script) {
                 const input = script.getStringField('INPUT');
                 let value = Entry.hw.portData[input];
-                value = Math.round(value / 255 * 65);
+
+                // edited 210421, 0~100 을 0~65로 변환, 100 이상은 최대값으로 처리함.
                 value = Math.max(value, 0);
-                value = Math.min(value, 65);
+                value = Math.min(value, 100);
+                value = Math.ceil((value / 100) * 65);
 
                 if (Entry.NeobotPurple.log_to_console) {
                     Entry.console.print('=== neobot_purple_melody_play_with_sensor ===', 'speak');
@@ -1884,9 +2049,7 @@ Entry.NeobotPurple.getBlocks = function() {
             ],
             events: {},
             def: {
-                params: [
-                    null,
-                ],
+                params: [null],
                 type: 'neobot_purple_melody_stop',
             },
             paramsKeyMap: {},
@@ -1907,6 +2070,30 @@ Entry.NeobotPurple.getBlocks = function() {
         /*************************
          * class neobot_purple_servo
          *************************/
+        neobot_purple_servo_title: {
+            color: EntryStatic.colorSet.common.TRANSPARENT,
+            fontColor: '#191970',
+            skeleton: 'basic_text',
+            skeletonOptions: {
+                contentPos: {
+                    x: 5,
+                },
+            },
+            params: [
+                {
+                    type: 'Text',
+                    text: Lang.template.neobot_purple_servo_title,
+                    color: '#191970',
+                    align: 'left',
+                },
+            ],
+            def: {
+                type: 'neobot_purple_servo_title',
+            },
+            class: 'neobot_purple_servo',
+            isNotFor: ['neobot_purple'],
+            events: {},
+        },
         neobot_purple_servo_init: {
             color: EntryStatic.colorSet.block.default.HARDWARE,
             outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -1934,10 +2121,7 @@ Entry.NeobotPurple.getBlocks = function() {
             ],
             events: {},
             def: {
-                params: [
-                    null,
-                    null,
-                ],
+                params: [null, null],
                 type: 'neobot_purple_servo_init',
             },
             paramsKeyMap: {
@@ -1958,8 +2142,8 @@ Entry.NeobotPurple.getBlocks = function() {
                     }
 
                     let out1 = port == 'OUT1';
-                    let out2 = port == 'OUT1';
-                    let out3 = port == 'OUT1';
+                    let out2 = port == 'OUT2';
+                    let out3 = port == 'OUT3';
                     if (port == 'ALL') {
                         out1 = true;
                         out2 = true;
@@ -1972,13 +2156,17 @@ Entry.NeobotPurple.getBlocks = function() {
                     if (out1) Entry.hw.sendQueue['OUT1'] = resetValue;
                     if (out2) Entry.hw.sendQueue['OUT2'] = resetValue;
                     if (out3) Entry.hw.sendQueue['OUT3'] = resetValue;
-                    if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_servo_init : ' + resetValue, 'speak');
+                    if (Entry.NeobotPurple.log_to_console)
+                        Entry.console.print('neobot_purple_servo_init : ' + resetValue, 'speak');
                     setTimeout(function() {
                         if (out1) Entry.hw.sendQueue['OUT1'] = initValue;
                         if (out2) Entry.hw.sendQueue['OUT2'] = initValue;
                         if (out3) Entry.hw.sendQueue['OUT3'] = initValue;
-                        if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_servo_init : ' + initValue, 'speak');
-                        script.timeFlag = 0;
+                        if (Entry.NeobotPurple.log_to_console)
+                            Entry.console.print('neobot_purple_servo_init : ' + initValue, 'speak');
+                        setTimeout(function() {
+                            script.timeFlag = 0;
+                        }, 100);
                     }, 200);
 
                     return script;
@@ -2029,19 +2217,19 @@ Entry.NeobotPurple.getBlocks = function() {
                         ['IN1', 'IN1'],
                         ['IN2', 'IN2'],
                         ['IN3', 'IN3'],
-                        ['0%', '0'],
-                        ['10%', '1'],
-                        ['20%', '2'],
-                        ['30%', '3'],
-                        ['40%', '4'],
-                        ['50%', '5'],
-                        ['60%', '6'],
-                        ['70%', '7'],
-                        ['80%', '8'],
-                        ['90%', '9'],
-                        ['100%', '10'],
+                        ['0%', 0],
+                        ['10%', 10],
+                        ['20%', 20],
+                        ['30%', 30],
+                        ['40%', 40],
+                        ['50%', 50],
+                        ['60%', 60],
+                        ['70%', 70],
+                        ['80%', 80],
+                        ['90%', 90],
+                        ['100%', 100],
                     ],
-                    value: '5',
+                    value: 50,
                     fontSize: 11,
                     bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
                     arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
@@ -2054,12 +2242,7 @@ Entry.NeobotPurple.getBlocks = function() {
             ],
             events: {},
             def: {
-                params: [
-                    null,
-                    null,
-                    null,
-                    null,
-                ],
+                params: [null, null, null, null],
                 type: 'neobot_purple_servo_rotate',
             },
             paramsKeyMap: {
@@ -2081,14 +2264,21 @@ Entry.NeobotPurple.getBlocks = function() {
                 let speedValue;
                 if (Entry.Utils.isNumber(speed)) {
                     speedValue = Entry.parseNumber(speed);
-                } else {  // 센서일 경우 convert 0 ~ 255 to 0 ~ 10
+                } else {
                     speedValue = Entry.hw.portData[speed];
-                    speedValue = Math.round(speedValue / 255 * 10);
-                    speedValue = Math.max(speedValue, 0);
-                    speedValue = Math.min(speedValue, 10);
                 }
 
-                const outValue = speedValue > 0 ? directionValue + speedValue : directionValue;
+                // edited 210421, 0~100 을 0~10 으로 변환
+                speedValue = Math.max(speedValue, 0);
+                speedValue = Math.min(speedValue, 100);
+                speedValue = Math.ceil(speedValue / 10);
+
+                let outValue = directionValue + speedValue;
+                if (outValue == directionValue) {
+                    outValue = 254;
+                } else {
+                    outValue = outValue - 1;
+                }
 
                 if (Entry.NeobotPurple.log_to_console) {
                     Entry.console.print('=== neobot_purple_servo_rotate ===');
@@ -2138,10 +2328,7 @@ Entry.NeobotPurple.getBlocks = function() {
             ],
             events: {},
             def: {
-                params: [
-                    null,
-                    null,
-                ],
+                params: [null, null],
                 type: 'neobot_purple_servo_stop',
             },
             paramsKeyMap: {
@@ -2183,7 +2370,12 @@ Entry.NeobotPurple.getBlocks = function() {
                 },
                 {
                     type: 'Dropdown',
-                    options: [['OUT1', 'OUT1'], ['OUT2', 'OUT2'], ['OUT1&2', 'ALL']],
+                    options: [
+                        ['OUT1', 'OUT1'],
+                        ['OUT2', 'OUT2'],
+                        ['OUT3', 'OUT3'],
+                        [Lang.Blocks.neobot_purple_out_all, 'ALL'],
+                    ],
                     value: 'OUT1',
                     fontSize: 11,
                     bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -2206,19 +2398,19 @@ Entry.NeobotPurple.getBlocks = function() {
                         ['IN1', 'IN1'],
                         ['IN2', 'IN2'],
                         ['IN3', 'IN3'],
-                        ['0%', '0'],
-                        ['10%', '1'],
-                        ['20%', '2'],
-                        ['30%', '3'],
-                        ['40%', '4'],
-                        ['50%', '5'],
-                        ['60%', '6'],
-                        ['70%', '7'],
-                        ['80%', '8'],
-                        ['90%', '9'],
-                        ['100%', '10'],
+                        ['0%', 0],
+                        ['10%', 10],
+                        ['20%', 20],
+                        ['30%', 30],
+                        ['40%', 40],
+                        ['50%', 50],
+                        ['60%', 60],
+                        ['70%', 70],
+                        ['80%', 80],
+                        ['90%', 90],
+                        ['100%', 100],
                     ],
-                    value: '5',
+                    value: 50,
                     fontSize: 11,
                     bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
                     arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
@@ -2255,7 +2447,7 @@ Entry.NeobotPurple.getBlocks = function() {
                 if (!script.isStart) {
                     const port = script.getStringField('PORT', script);
                     const direction = script.getNumberField('DIRECTION');
-                    const speed = script.getNumberField('SPEED');
+                    const speed = script.getStringValue('SPEED');
                     const degree = script.getStringValue('DEGREE');
 
                     let out1 = port == 'OUT1';
@@ -2274,26 +2466,30 @@ Entry.NeobotPurple.getBlocks = function() {
 
                     let speedValue;
                     if (Entry.Utils.isNumber(speed)) {
-                        speedValue = 240 + speed;
+                        speedValue = Entry.parseNumber(speed);
                     } else {
                         speedValue = Entry.hw.portData[speed];
-                        speedValue = Math.round(speedValue / 255 * 10) + 240;
                     }
+
+                    // edited 210421, 0~100 을 240~250 으로 변환
+                    speedValue = Math.max(speedValue, 0);
+                    speedValue = Math.min(speedValue, 100);
+                    speedValue = Math.ceil(speedValue / 10) + 240;
 
                     let degreeValue;
                     if (Entry.Utils.isNumber(degree)) {
                         degreeValue = Entry.parseNumber(degree);
-                        degreeValue = Math.max(degreeValue, 0);
-                        degreeValue = Math.min(degreeValue, 180);
                     } else {
                         if (degree == 'IN1' || degree == 'IN2' || degree == 'IN3') {
                             degreeValue = Entry.hw.portData[degree];
-                            degreeValue = Math.round(degreeValue / 255 * 180);
                         } else {
                             degreeValue = 0;
                         }
                     }
-                    degreeValue += 1;
+                    // edited 210421, 별도의 변환없이 그대로 사용함
+                    degreeValue = Math.max(degreeValue, 0);
+                    degreeValue = Math.min(degreeValue, 180);
+                    degreeValue = degreeValue + 1;
 
                     if (Entry.NeobotPurple.log_to_console) {
                         Entry.console.print('=== neobot_purple_servo_change_degree ===', 'speak');
@@ -2314,18 +2510,33 @@ Entry.NeobotPurple.getBlocks = function() {
                     if (out1) Entry.hw.sendQueue['OUT1'] = directionValue;
                     if (out2) Entry.hw.sendQueue['OUT2'] = directionValue;
                     if (out3) Entry.hw.sendQueue['OUT3'] = directionValue;
-                    if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_servo_change_degree : ' + directionValue, 'speak');
-                    setTimeout(function() { // speed
+                    if (Entry.NeobotPurple.log_to_console)
+                        Entry.console.print(
+                            'neobot_purple_servo_change_degree : ' + directionValue,
+                            'speak'
+                        );
+                    setTimeout(function() {
+                        // speed
                         if (out1) Entry.hw.sendQueue['OUT1'] = speedValue;
                         if (out2) Entry.hw.sendQueue['OUT2'] = speedValue;
                         if (out3) Entry.hw.sendQueue['OUT3'] = speedValue;
-                        if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_servo_change_degree : ' + speedValue, 'speak');
-                        setTimeout(function() { // degree
+                        if (Entry.NeobotPurple.log_to_console)
+                            Entry.console.print(
+                                'neobot_purple_servo_change_degree : ' + speedValue,
+                                'speak'
+                            );
+                        setTimeout(function() {
+                            // degree
                             if (out1) Entry.hw.sendQueue['OUT1'] = degreeValue;
                             if (out2) Entry.hw.sendQueue['OUT2'] = degreeValue;
                             if (out3) Entry.hw.sendQueue['OUT3'] = degreeValue;
-                            if (Entry.NeobotPurple.log_to_console) Entry.console.print('neobot_purple_servo_change_degree : ' + degreeValue, 'speak');
-                            setTimeout(function() { // final delay
+                            if (Entry.NeobotPurple.log_to_console)
+                                Entry.console.print(
+                                    'neobot_purple_servo_change_degree : ' + degreeValue,
+                                    'speak'
+                                );
+                            setTimeout(function() {
+                                // final delay
                                 script.timeFlag = 0;
                             }, 200);
                         }, 200);
@@ -2398,19 +2609,19 @@ Entry.NeobotPurple.getBlocks = function() {
                         ['IN1', 'IN1'],
                         ['IN2', 'IN2'],
                         ['IN3', 'IN3'],
-                        ['100%', 'p100'],
-                        ['90%', 'p90'],
-                        ['80%', 'p80'],
-                        ['70%', 'p70'],
-                        ['60%', 'p60'],
-                        ['50%', 'p50'],
-                        ['40%', 'p40'],
-                        ['30%', 'p30'],
-                        ['20%', 'p20'],
-                        ['10%', 'p10'],
-                        ['0%', 'p0'],
+                        ['100%', 100],
+                        ['90%', 90],
+                        ['80%', 80],
+                        ['70%', 70],
+                        ['60%', 60],
+                        ['50%', 50],
+                        ['40%', 40],
+                        ['30%', 30],
+                        ['20%', 20],
+                        ['10%', 10],
+                        ['0%', 0],
                     ],
-                    value: 'p100',
+                    value: 100,
                     fontSize: 11,
                     bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
                     arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,

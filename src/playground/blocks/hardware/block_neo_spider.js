@@ -114,9 +114,9 @@ Entry.NeoSpider.setLanguage = function () {
                 neo_spider_get_analog_value: '아날로그 %1 센서값',
                 neo_spider_get_analog_value_map: '아날로그 %1 센서값의 범위를 %2 ~ %3 에서 %4 ~ %5 로 바꾼값',
                 neo_spider_get_ultrasonic_value: '초음파 센서값',
-                neo_spider_get_motion_value: '모션 센서값',
+                neo_spider_get_motion_value: '모션 센서 감지됨',
                 neo_spider_get_infared_value: '적외선센서 %1 감지됨',
-                neo_spider_set_tone: '버저를 %1 %2 음으로 %3 초 연주하기 %4',
+                neo_spider_set_tone: '부저를 %1 %2 음으로 %3 초 연주하기 %4',
                 neo_spider_set_servo: '머리방향 %1 의 각도로 정하기 (최소:50, 최대:130) %2',
                 neo_spider_set_servo_direction: '머리방향 %1 바라보기 %2',
                 neo_spider_motor_state: '네오스파이더 %1 이동하기 %2',
@@ -1436,6 +1436,24 @@ Entry.NeoSpider.getBlocks = function () {
 
                 return script.callReturn();
             },
+            syntax: {
+                js: [],
+                py: [
+                    {
+                        syntax: 'NeoSpider.neopixelColorPicker(%1, %2)',
+                        textParams: [
+                            {
+                                type: 'Block',
+                                accept: 'string',
+                            },
+                            {
+                                type: 'Color',
+                                converter: Entry.block.converters.returnStringValue,
+                            },
+                        ],
+                    },
+                ],
+            },
         },
         neo_spider_neopixel_color_picker_all_on: {
             color: EntryStatic.colorSet.block.default.HARDWARE,
@@ -1489,6 +1507,20 @@ Entry.NeoSpider.getBlocks = function () {
 
                 Entry.hw.update();
                 return script.callReturn();
+            },
+            syntax: {
+                js: [],
+                py: [
+                    {
+                        syntax: 'NeoSpider.neopixelColorPickerAllOn(%1)',
+                        textParams: [
+                            {
+                                type: 'Color',
+                                converter: Entry.block.converters.returnStringValue,
+                            },
+                        ],
+                    },
+                ],
             },
         },
         neo_spider_neopixel_all_on: {
